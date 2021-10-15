@@ -1,10 +1,10 @@
 import _ from "lodash";
 import './style.css';
 import Icon from './assets/icon.png';
-import printMe from './print.js';
+import {printMe, test} from './print.js';
 
 function component() {
-
+    console.log('环境',process.env.http_env)
     // 显示图片。
     const myIcon = new Image();
     myIcon.src = Icon;

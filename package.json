@@ -4,12 +4,14 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "webpack serve --open",
-    "build": "npx webpack --config webpack.config.js",
+    "dev": "http_env=env_dev webpack serve --open --config webpack.dev.js",
+    "build-dev": "http_env=env_dev npx webpack --config webpack.dev.js",
+    "build-prod": "http_env=env_prod npx webpack --config webpack.prod.js",
+    "build-demo": "http_env=env_demo npx webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "dzk",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.4.0",
@@ -19,7 +21,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.3.1",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "lodash": "^4.17.21"

@@ -1,19 +1,9 @@
 
 const path = require('path');
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    // 开发环境使用 代码报错文件（不然报错在bundle文件）
-    devtool: 'inline-source-map',
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
-        },
-        compress: true,
-        port: 9000,
-        hot: true,
-    },
 
     // 入口
     entry: {
@@ -51,9 +41,14 @@ module.exports = {
     // 插件
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'webpack-插件管理--'
+            title: 'webpack-插件管理--',
         }),
-
+        // 配置不同环境下参数，比如demo test等
+        new webpack.DefinePlugin({
+            'process.env': {
+                'http_env': JSON.stringify(process.env.http_env)
+            }
+         }),
     ],
     optimization: {
         moduleIds: 'deterministic',
